@@ -34,7 +34,7 @@ test('check output when all fields are valid', async ({ page }) => {
 
 
 
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(3000);
 });
 
 test(' should check output when all fields are valid', async ({ page }) => {
