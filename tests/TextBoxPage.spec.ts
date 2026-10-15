@@ -31,10 +31,6 @@ test('check output when all fields are valid', async ({ page }) => {
   await expect(emailOutput).toHaveText('Email:joe_doe@email.com')
   await expect(currentAddressOutput).toHaveText('Current Address :Somewhere CLOSE');
   await expect(permanentAddressOutput).toHaveText('Permananet Address :Somewhere FAR');
-
-
-
-  await page.waitForTimeout(3000);
 });
 
 test(' should check output when all fields are valid', async ({ page }) => {
