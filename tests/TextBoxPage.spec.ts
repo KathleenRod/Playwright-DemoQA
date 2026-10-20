@@ -12,6 +12,21 @@ await textBoxPage.checkOutputs('Joe Rod', 'joe@qa.com', 'valencia', 'barcelona')
 await page.waitForTimeout(5000);
 });
 
+test('should check output when email field is invalid', async ({ page }) => {
+  const textBoxPage = new TextBoxPage(page);
+  await textBoxPage.goto();
+  await textBoxPage.fillFields('Joe Rod', 'joe_doe!email.com');
+  await textBoxPage.checkOutputs();
+  await textBoxPage.submitButton.click();
+  await textBoxPage.checkOutputs();
+  await textBoxPage.fillFields('Joe Rod', 'joe@qa.com');
+  await textBoxPage.submitButton.click();
+  await textBoxPage.checkOutputs('Joe Rod', 'joe@qa.com');
+
+  await page.waitForTimeout(5000);
+
+});
+
 //NO NECESITAMOS LOS LOCATORS ya que estaran dentro del PAGE OBJECT ( LINEA 5)
 //const fullNameField = page.locator ('//input[@id="userName"]');
  // const fullEmailField = page.locator ('//input[@id="userEmail"]');
@@ -66,17 +81,3 @@ await page.waitForTimeout(5000);
 
   
 
-test('should check output when email field is invalid', async ({ page }) => {
-  const textBoxPage = new TextBoxPage(page);
-  await textBoxPage.goto();
-  await textBoxPage.fillFields('Joe Rod', 'joe_doe!email.com');
-  await textBoxPage.checkOutputs();
-  await textBoxPage.submitButton.click();
-  await textBoxPage.checkOutputs();
-  await textBoxPage.fillFields('Joe Rod', 'joe@qa.com');
-  await textBoxPage.submitButton.click();
-  await textBoxPage.checkOutputs('Joe Rod', 'joe@qa.com');
-
-  await page.waitForTimeout(5000);
-
-});
