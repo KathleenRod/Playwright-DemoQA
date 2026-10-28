@@ -55,8 +55,18 @@ export class PracticeFormPage {
     await this.mobileField.fill(mobile);
   }
 
-  async setDateOfBirth(): Promise<void> {
-    // To Do
+  async setDateOfBirth(year: string, month: string, day: string): Promise<void> {
+    // Opening the date picker
+    await this.page.locator('//input[@id="dateOfBirthInput"]').click();
+
+    // Selecting the year
+    await this.page.locator('//select[contains(@class,"react-datepicker__year-select")]').selectOption({ label: year });
+
+    // Selecting the month
+    await this.page.locator('//select[contains(@class,"react-datepicker__month-select")]').selectOption({ label: month });
+
+    // Selecting the day
+    await this.page.locator('(//div[contains(@class,"react-datepicker__day")][normalize-space()="' + day + '"])[last()]').click();
   }
 
   async setSubject(subject: string): Promise<void> {
@@ -92,5 +102,10 @@ export class PracticeFormPage {
 
   async clickSubmit(): Promise<void> {
     await this.submitButton.click();
+  }
+
+  async checkTable(label: string, value: string): Promise<void> {
+    const locator = this.page.locator('//td[normalize-space()="' + label + '"]/ancestor::tr[1]//td[2]');
+    await expect.soft(locator).toHaveText(value);
   }
 }

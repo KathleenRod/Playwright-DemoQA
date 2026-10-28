@@ -11,7 +11,7 @@ test('should complete the practice form',
   await practiceFormPage.setEmail('joe_doe@email.com');
   await practiceFormPage.setGender('Male');
   await practiceFormPage.setMobile('1234567890');
-  // await practiceFormPage.setDateOfBirth();
+  await practiceFormPage.setDateOfBirth('2027', 'August', '13');
   await practiceFormPage.setSubject('Computer Science');
   await practiceFormPage.setSubject('English');
   await practiceFormPage.setHobby('Sports');
@@ -20,6 +20,17 @@ test('should complete the practice form',
   await practiceFormPage.setCurrentAddress('Far Far Away');
   await practiceFormPage.setState('Haryana');
   await practiceFormPage.setCity('Karnal');
+
   await practiceFormPage.clickSubmit();
-  await page.waitForTimeout(10000);
+
+  await practiceFormPage.checkTable('Student Name', 'Joe Doe');
+  await practiceFormPage.checkTable('Student Email', 'joe_doe@email.com');
+  await practiceFormPage.checkTable('Gender', 'Male');
+  await practiceFormPage.checkTable('Mobile', '1234567890');
+  await practiceFormPage.checkTable('Date of Birth', '13 August,2027');
+  await practiceFormPage.checkTable('Subjects', 'Computer Science, English');
+  await practiceFormPage.checkTable('Hobbies', 'Sports, Music');
+  await practiceFormPage.checkTable('Picture', 'pig.png');
+  await practiceFormPage.checkTable('Address', 'Far Far Away');
+  await practiceFormPage.checkTable('State and City', 'Haryana Karnal');
 });
