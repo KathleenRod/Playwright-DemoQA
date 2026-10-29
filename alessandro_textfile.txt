@@ -1,0 +1,5 @@
+First animal = Elephant
+Second animal = Monkey
+Third animal = Dolphin
+Fourth animal = Dog
+Fifth animal = Mouse
